@@ -1,6 +1,18 @@
+body {
+  /* background-color: black; */
+  font-family: Helvetica;
+}
+
 .gameboard {
-  border: 1px solid black;
+  border: 1px solid blue;
+  height: 1000px;
+  width: 1000px;
+  margin-top: 50px;
+  margin: auto;
 }
 .path {
-  border: 1px solid black;
+  border: 1px solid red;
+  height: 900px;
+  width: 900px;
+  margin: auto;
 }
