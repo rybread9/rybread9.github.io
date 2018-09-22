@@ -21,8 +21,24 @@
 // Roll dice button
   // random num between 1 and 6
 
-// point-and-click to move tokens.- event listeners and handlers- review.
+
 
 // EXTRA:
 // toggle bar toggles between sides for turn
   // toggles automatically each turn but user can change toggle.
+
+
+
+// point-and-click to move tokens.- event listeners and handlers- review.
+$(()=>{
+
+
+  // point-and-click to move tokens.- event listeners and handlers- review.
+
+  
+    const $redToken = $('<div class="redToken"></div>');
+    $('.tile').on('click', (event)=>{
+      $(event.currentTarget).append($redToken);
+    })
+
+})
