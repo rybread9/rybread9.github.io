@@ -29,16 +29,28 @@
 
 
 
-// point-and-click to move tokens.- event listeners and handlers- review.
 $(()=>{
 
 
+  const generateGameBoard = () => {
+    for(let i=0; i<81; i++){
+      $('<div>')
+        .addClass('path')
+        .attr('id', 'box'+i)
+        .appendTo('.gameboard');
+    }
+    $('#box48').append('<p>start</p>').addClass('texttile');
+    $('#box39').append('<p>home</p>').addClass('texttile');
+    $('#box41').append('<p>finish</p>').addClass('texttile');
+  }
+
   // point-and-click to move tokens.- event listeners and handlers- review.
 
-  
-    const $redToken = $('<div class="redToken"></div>');
-    $('.tile').on('click', (event)=>{
-      $(event.currentTarget).append($redToken);
+    const $pinkToken = $('<div class="pinkToken"></div>');
+    $('.path').on('click', (event)=>{
+      $(event.currentTarget).append($pinkToken);
     })
 
+
+    generateGameBoard();
 })
