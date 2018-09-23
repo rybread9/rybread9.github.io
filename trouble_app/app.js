@@ -43,14 +43,44 @@ $(()=>{
     $('#box39').append('<p>home</p>').addClass('texttile');
     $('#box41').append('<p>finish</p>').addClass('texttile');
   }
+  generateGameBoard();
 
-  // point-and-click to move tokens.- event listeners and handlers- review.
+  // point-and-click to move tokens.- event listeners and handlers-
 
-    const $pinkToken = $('<div class="pinkToken"></div>');
-    $('.path').on('click', (event)=>{
-      $(event.currentTarget).append($pinkToken);
-    })
+  // const $pinkToken = $('<div class="pinkToken"></div>');
+  //
+  // $('.path').on('click', (event)=>{
+  //   $(event.currentTarget).append($pinkToken);
+  // })
+
+  // const $yellowToken = $('<div class="yellowToken"></div>');
+
+  // $('.path').on('click', (event)=>{
+  //   $(event.currentTarget).append($yellowToken);
+  // })
 
 
-    generateGameBoard();
+
+  // knowing who's turn it is:
+  //toggle bar
+  //toggles when a square is clicked
+
+  let turn = true;
+  const play = (event) => {
+    const $move = $(event.currentTarget);
+    //when user clicks on a square, alternate between displaying pink and yellow
+    //when turn is true, its pink's turn
+    if(turn === true){
+        $move
+          .append($('<div class="pinkToken"></div>'));
+        turn = false;
+        $move.off('click');
+    } else {//when turn != true, its yellow's turn
+      $move
+      .append($('<div class="yellowToken"></div>'));
+      turn = true;
+      $move.off('click');
+    }
+  }
+
 })
