@@ -32,22 +32,10 @@
 $(()=>{
 
 
-  const generateGameBoard = () => {
-    for(let i=0; i<81; i++){
-      $('<div>')
-        .addClass('path')
-        .attr('id', 'box'+i)
-        .appendTo('.gameboard');
-    }
-    $('#box48').append('<p>start</p>').addClass('texttile');
-    $('#box39').append('<p>home</p>').addClass('texttile');
-    $('#box41').append('<p>finish</p>').addClass('texttile');
-  }
 
-generateGameBoard();
 
   // point-and-click to move tokens.- event listeners and handlers-
-
+  //
   // const $pinkToken = $('<div class="pinkToken"></div>');
   //
   // const $makePink = $('.path').on('click', (event)=>{
@@ -67,7 +55,7 @@ generateGameBoard();
   //toggles when a square is clicked
 
 
-  let turn = true
+  let turn = true;
 
   const play = (event) => {
 
@@ -84,7 +72,7 @@ generateGameBoard();
     // Yellow token div
     const $yellowToken = $('<div class="yellowToken"></div>');
 
-    // when a gameboard div is clicked, a pink token will be appended to it
+    // when a gameboard div is clicked, a yellow token will be appended to it
     const $makeYellow = $('.path').on('click', (event)=>{
       $(event.currentTarget).append($yellowToken);
     })
@@ -95,14 +83,29 @@ generateGameBoard();
       $move
         .on('click', $makePink);
       turn = false;
-      // $move.off('click');
+      $move.off('click');
     } else {//when turn = false, its yellow's turn
       $move
         .on('click', $makeYellow);
       turn = true;
-      // $move.off('click');
+      $move.off('click');
     }
   }
 
+
+  const generateGameBoard = () => {
+    for(let i=0; i<81; i++){
+      $('<div>')
+        .addClass('path')
+        .attr('id', 'box'+i)
+        .appendTo('.gameboard')
+        .on('click', play);
+    }
+    $('#box48').append('<p>start</p>').addClass('texttile');
+    $('#box39').append('<p>home</p>').addClass('texttile');
+    $('#box41').append('<p>finish</p>').addClass('texttile');
+  }
+
+generateGameBoard();
 
 });
