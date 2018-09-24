@@ -47,10 +47,11 @@ $(()=>{
 
 
   // DICE ROLL
-  const diceRoll = () => {
-    const dice = Math.floor(Math.random() * 6) +1;
-    $('#dice').on('click', console.log(dice));
+  const $diceBtn = $('#dice');
+  const rollDice = () => {
+    console.log(Math.floor(Math.random() * 6) +1);
   }
+  $diceBtn.on('click', rollDice);
 
 
   // point-and-click to move tokens.- event listeners and handlers-
@@ -63,19 +64,19 @@ $(()=>{
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const play = (event) => {
-    // debugger;
+    debugger;
     const $move = $(event.currentTarget);
 
     //when turn is true, its pink's turn
     if(turn === true){
       // Pink token div
-      // const $pinkToken = ;
+      const $pinkToken = $('<div class="pinkToken"></div>');
 
-      // when a gameboard div is clicked, a pink token will be appended to it
+      // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
       const $makePink = $('.path').on('click', (event)=>{
-        $move.append($('<div class="pinkToken"></div>'));
+        $move.append($pinkToken);
         turn = false;
-        $move.off('click');
+        // $move.off('click');
       })
 
       $move
@@ -114,7 +115,7 @@ $(()=>{
     $('#box48').append('<p>start</p>').addClass('texttile');
     $('#box39').append('<p>home</p>').addClass('texttile');
     $('#box41').append('<p>finish</p>').addClass('texttile');
-    // $('.path').load(play);
+
   }
 
 generateGameBoard();
