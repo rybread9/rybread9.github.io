@@ -64,7 +64,7 @@ $(()=>{
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const play = (event) => {
-    debugger;
+    console.log('hi');
     const $move = $(event.currentTarget);
 
     //when turn is true, its pink's turn
@@ -73,33 +73,16 @@ $(()=>{
       const $pinkToken = $('<div class="pinkToken"></div>');
 
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
-      const $makePink = $('.path').on('click', (event)=>{
-        $move.append($pinkToken);
-        turn = false;
-        // $move.off('click');
-      })
-
-      $move
-        .on('click', $makePink);
+      $move.append($pinkToken);
+      turn = false;
 
     } else if(turn === false) {//when turn = false, its yellow's turn
       // Yellow token div
-      // const $yellowToken = ;
+      const $yellowToken = $('<div class="yellowToken"></div>');
 
       // when a gameboard div is clicked, a yellow token will be appended to it
-      const $makeYellow = $('.path').on('click', (event)=>{
-        $move.append($('<div class="yellowToken"></div>'));
+        $move.append($yellowToken);
         turn = true;
-        $move.off('click');
-      })
-
-      $move
-        .on('click', $makeYellow);
-
-
-
-
-
     }
   }
 
@@ -115,7 +98,6 @@ $(()=>{
     $('#box48').append('<p>start</p>').addClass('texttile');
     $('#box39').append('<p>home</p>').addClass('texttile');
     $('#box41').append('<p>finish</p>').addClass('texttile');
-
   }
 
 generateGameBoard();
