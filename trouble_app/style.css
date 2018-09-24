@@ -2,7 +2,7 @@ body {
   background-color: black;
   color: rgb(0, 217, 255);
   font-family: 'Orbitron', sans-serif;
-
+  letter-spacing: 4px;
 }
 header {
   text-align: center;
@@ -12,17 +12,38 @@ header {
 main {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.aside > .dice > a {
-  font-size: 30px;
-  text-decoration: none;
-}
-.buttons > a {
-  font-size: 30px;
-  text-decoration: none;
+.aside {
+  border: 1px solid rgb(0, 217, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  margin-right: 10%;
 }
 .dice {
   margin-top: 30px;
+}
+.menu {
+  border: 1px solid rgb(0, 217, 255);
+  padding: 20px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10%;
+}
+button {
+  background-color: black;
+  color: rgb(0, 217, 255);
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 3px;
+  font-size: 20px;
+  border-color: rgb(2, 203, 10);
+  margin-top: 10px;
+  padding: 10px;
 }
 #modal {
 	background-color: rgba(0, 0, 0, 0.4);
@@ -114,12 +135,10 @@ main {
   border-radius: 50%;
   justify-content: center;
 }
-/* ---Toggle Bar by www.W3schools.com--- */
+/* ---Toggle Bar by https://www.w3schools.com/howto/howto_css_switch.asp--- */
 .toggle {
-  border: 1px solid rgb(0, 217, 255);
   height: 100px;
   width: 160px;
-  justify-content: center;
 }
 .switch {
   position: relative;
