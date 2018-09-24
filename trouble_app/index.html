@@ -21,9 +21,20 @@
     <main>
       <!-- MENU -->
       <div class="menu">
-        <div class="buttons">
-          <a href="#">Game Rules</a><br />
+        <div class="gamelinks">
+          <!-- Game Rules Modal -->
+          <button id="openModal">Game Rules</button><br />
+          <div id="modal">
+            <div id="modal-textbox">
+              <a href="close">Close</a>
+              <h2>Trouble Game Rules</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+          </div>
+
+          <!-- Restart -->
           <a href="#">Restart</a><br />
+
         </div>
       </div>
 
@@ -44,12 +55,10 @@
           </label>
         </div>
 
-
-
         <div class="dice">
-
+          <output form="diceRoll" name="dice" for=""></output>
+          <button id="dice">roll dice</button>
         </div>
-
 
         <div class="score">
 

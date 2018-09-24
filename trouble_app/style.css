@@ -9,9 +9,40 @@ header {
   font-size: 40px;
 
 }
-.aside {
-  font-size: 20px;
+main {
+  display: flex;
+  flex-direction: row;
+}
+.aside > .dice > a {
+  font-size: 30px;
   text-decoration: none;
+}
+.buttons > a {
+  font-size: 30px;
+  text-decoration: none;
+}
+.dice {
+  margin-top: 30px;
+}
+#modal {
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index 1;
+	overflow: auto;
+	display: none;
+}
+#modal-textbox {
+	background-color: white;
+	height: 350px;
+	width: 550px;
+	border-radius: 2px;
+	margin: 150px auto;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+	padding: 2%;
 }
 /* ---Game Board--- */
 .gameboard {
@@ -125,7 +156,7 @@ input:checked + .slider {
   background-color: rgb(235, 255, 0);
 }
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px rgb(235, 255, 0);
 }
 input:checked + .slider:before {
   -webkit-transform: translateX(65px);
