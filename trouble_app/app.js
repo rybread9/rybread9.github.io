@@ -48,10 +48,11 @@ $(()=>{
 
   // DICE ROLL
   const $diceBtn = $('#dice');
-  const rollDice = () => {
-    console.log(Math.floor(Math.random() * 6) +1);
+
+  const $rollDice = () => {
+    $('#output').text(Math.floor(Math.random() * 6) +1);
   }
-  $diceBtn.on('click', rollDice);
+  $diceBtn.on('click', $rollDice);
 
 
   // point-and-click to move tokens.- event listeners and handlers-
@@ -66,26 +67,20 @@ $(()=>{
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const play = (event) => {
-    // console.log('hi');
-    // $('.path').empty();
+
     const $move = $(event.currentTarget);
 
     //when turn is true, its pink's turn
     if(turn === true){
-      // Pink token div
-
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
-      removeToken();
+
       $move.append($pinkToken);
       $move.addClass('pinkToken');
       turn = false;
 
     } else if(turn === false) {//when turn = false, its yellow's turn
-      // Yellow token div
-
-
       // when a gameboard div is clicked, a yellow token will be appended to it
-      removeToken();
+
       $move.append($yellowToken);
       $move.addClass('yellowToken');
       turn = true;
@@ -93,10 +88,6 @@ $(()=>{
   }
 
 
-  const removeToken = () => {
-    $('div').removeClass('.pinkToken');
-    $('div').removeClass('.yellowToken');
-  }
 
 
   const generateGameBoard = () => {
