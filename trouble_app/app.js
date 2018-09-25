@@ -55,6 +55,18 @@ $(()=>{
   $diceBtn.on('click', $rollDice);
 
 
+  // RESTART
+  const $restartBtn = $('#restart');
+
+  const $restartGame = () => {
+    $('.path').removeClass('yellowToken');
+    $('.path').removeClass('pinkToken');
+    $('.path').empty();
+    $('.path').empty();
+  }
+  $restartBtn.on('click', $restartGame);
+
+
   // point-and-click to move tokens.- event listeners and handlers-
   // knowing who's turn it is:
   //toggle bar
@@ -98,9 +110,9 @@ $(()=>{
         .appendTo('.gameboard')
         .on('click', play);
     }
-    $('#box48').append('<p>start</p>').addClass('texttile');
-    $('#box39').append('<p>home</p>').addClass('texttile');
-    $('#box41').append('<p>finish</p>').addClass('texttile');
+    $('#box48').text('start').attr('class','texttile');
+    $('#box39').text('home').attr('class', 'texttile');
+    $('#box41').text('finish').attr('class', 'texttile');
   }
 
 generateGameBoard();

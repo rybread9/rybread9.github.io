@@ -63,7 +63,9 @@ button {
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  text-align: center;
   margin-right: 10%;
+  padding: 20px;
 }
 .dice {
   margin-top: 30px;
@@ -80,7 +82,6 @@ button {
   padding: 5% 1%;
   margin-bottom: 10%;
   background-color: #000000;
-  /* box-shadow: 1px 1px 1px gray, -1px -1px 1px gray; */
 }
 /* ---Game Board--- */
 .gameboard {
@@ -107,15 +108,6 @@ button {
   color: white;
   justify-content: space-between;
 }
-.path .pinkToken {
-  border: 1px solid rgba(89, 4, 203, 0.3);
-  background-color: rgba(89, 4, 203, 0.3);
-  height: 10%;
-  width: 10%;
-  margin: 0 auto;
-  color: white;
-  justify-content: space-between;
-}
 #box10, #box11, #box12, #box13, #box14, #box15, #box16, #box19, #box25, #box28, #box34, #box37, #box43, #box46, #box52, #box55, #box61, #box64, #box65, #box66, #box68, #box69, #box70, #box57, #box59, #box48, #box50, #box39, #box41 {
   border: 1px solid rgb(0, 217, 255);
   border-radius: 4px;
@@ -123,6 +115,12 @@ button {
 }
 .texttile {
   text-align: center;
+  height: 10%;
+  width: 10%;
+  margin: 0 auto;
+  vertical-align: middle;
+  line-height: 60px;
+
 }
 .texttile > p {
   padding-top: 12px;
@@ -154,6 +152,7 @@ button {
   background-color: rgb(255, 0, 214);
   border-radius: 50%;
   justify-content: center;
+  z-index: 1;
 }
 #yellowToken {
   height: 40px;
@@ -164,11 +163,14 @@ button {
   background-color: rgb(235, 255, 0);
   border-radius: 50%;
   justify-content: center;
+  z-index: 1;
 }
 /* ---Toggle Bar by https://www.w3schools.com/howto/howto_css_switch.asp--- */
 .toggle {
-  height: 100px;
+  border: 1px solid rgb(2, 203, 10);
+  height: 90%;
   width: 160px;
+  padding: 10px;
 }
 .switch {
   position: relative;
