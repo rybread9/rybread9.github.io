@@ -61,29 +61,41 @@ $(()=>{
 
 
   let turn = true;
+  const $pinkToken = $('<div id="pinkToken"></div>');
+  const $yellowToken = $('<div id="yellowToken"></div>');
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const play = (event) => {
-    console.log('hi');
+    // console.log('hi');
+    // $('.path').empty();
     const $move = $(event.currentTarget);
 
     //when turn is true, its pink's turn
     if(turn === true){
       // Pink token div
-      const $pinkToken = $('<div class="pinkToken"></div>');
 
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
+      removeToken();
       $move.append($pinkToken);
+      $move.addClass('pinkToken');
       turn = false;
 
     } else if(turn === false) {//when turn = false, its yellow's turn
       // Yellow token div
-      const $yellowToken = $('<div class="yellowToken"></div>');
+
 
       // when a gameboard div is clicked, a yellow token will be appended to it
-        $move.append($yellowToken);
-        turn = true;
+      removeToken();
+      $move.append($yellowToken);
+      $move.addClass('yellowToken');
+      turn = true;
     }
+  }
+
+
+  const removeToken = () => {
+    $('div').removeClass('.pinkToken');
+    $('div').removeClass('.yellowToken');
   }
 
 
