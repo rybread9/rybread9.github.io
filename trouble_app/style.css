@@ -43,7 +43,7 @@ button {
 	height: 100%;
 	width: 100%;
 	z-index: 1;
-	overflow: auto;
+	overflow: scroll;
 	display: none;
 }
 #modal-textbox {
@@ -55,6 +55,9 @@ button {
 	margin: 150px auto;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 	padding: 2%;
+  overflow: scroll;
+  text-align: center;
+  line-height: 20px;
 }
 /* RIGHT SIDE */
 .aside {
@@ -74,8 +77,25 @@ button {
   align-content: center;
   justify-content: center;
 }
-#output {
-  font-size: 40px;
+#diceRoll {
+  font-size: 20px;
+  text-align: center;
+  min-width: 50%;
+  height: auto;
+  padding: 5% 1%;
+  margin-bottom: 10%;
+  background-color: #000000;
+}
+.score {
+  border: 1px solid rgb(2, 203, 10);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+}
+#pinkScore, #yellowScore {
+  font-size: 20px;
   text-align: center;
   min-width: 50%;
   height: auto;
@@ -99,7 +119,7 @@ button {
   /* align-content: center; */
 }
 /* ---Game Play Path--- */
-.path {
+.gameSquares {
   border: 1px solid rgba(89, 4, 203, 0.3);
   background-color: rgba(89, 4, 203, 0.3);
   height: 10%;
@@ -119,12 +139,10 @@ button {
   width: 10%;
   margin: 0 auto;
   vertical-align: middle;
-  line-height: 60px;
+  line-height: -15px;
 
 }
-.texttile > p {
-  padding-top: 12px;
-}
+
 #box48 {
   border-color: rgb(2, 203, 10);
   background-color: rgba(2, 203, 10, 0.3);
