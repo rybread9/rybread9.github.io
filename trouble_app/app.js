@@ -62,9 +62,14 @@ $(()=>{
   // DICE ROLL
 
   const $rollDice = () => {
-    $('#diceRoll').text(`Move: ${Math.floor(Math.random() * 6) +1}`);
+    const $spaces = $('#diceRoll').text(`Move: ${Math.floor(Math.random() * 6) +1}`);
+
   }
-  $('#dice').on('click', $rollDice);
+  const $clickRoll = $('#dice').on('click', $rollDice);
+
+  //take value of rollDice + $pinkToken.val()
+
+
 
 
   // WIN
@@ -101,24 +106,26 @@ $(()=>{
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const play = (event) => {
+    //if board square is not path, don't let it click
 
     const $move = $(event.currentTarget);
 
     //when turn is true, its pink's turn
     if(turn === true){
+
+      // const $moveSpace = $rollDice + $pinkToken.val();
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
       // $('input').attr('checked', '');
       if ($(event.currentTarget).hasClass('yellowToken')) {
         $('#yellowToken').remove();
-        $(event.currentTarget).removeClass('yellowToken');
+        $('.gameSquares').removeClass('yellowToken');
+        $('.gameSquares').removeClass('pinkToken');
         alert(`Womp womp. Yellow has been sent back to Home.`);
       }
+      $('.gameSquares').removeClass('pinkToken');
       $move.append($pinkToken);
       $move.addClass('pinkToken');
       checkWin();
-      // console.log(`Pink token's turn`);
-      // console.log(event.currentTarget);
-      // sendHome(event);
       turn = false;
 
     } else if(turn === false) {//when turn = false, its yellow's turn
@@ -126,15 +133,14 @@ $(()=>{
       // $('input').attr('unchecked', '');
       if ($(event.currentTarget).hasClass('pinkToken')) {
         $('#pinkToken').remove();
-        $(event.currentTarget).removeClass('pinkToken');
+        $('.gameSquares').removeClass('pinkToken');
+        $('.gameSquares').removeClass('yellowToken');
         alert(`Womp womp. Pink has been sent back to Home.`);
       }
+      $('.gameSquares').removeClass('yellowToken');
       $move.append($yellowToken);
       $move.addClass('yellowToken');
       checkWin();
-      // sendHome(event);
-      // console.log(`Yellow token's turn`);
-      // console.log(event.currentTarget);
       turn = true;
     }
   }
@@ -149,40 +155,42 @@ $(()=>{
         .attr('id', 'box'+i)
         .appendTo('.gameboard')
         .on('click', play);
+
     }
     $('#box48').text('start');
     $('#box39').text('home');
     $('#box41').text('finish');
-    // $('#box39').attr('path', 0);
-    // $('#box48').attr('path', 1);
-    // $('#box57').attr('path', 2);
-    // $('#box66').attr('path', 3);
-    // $('#box65').attr('path', 4);
-    // $('#box64').attr('path', 5);
-    // $('#box55').attr('path', 6);
-    // $('#box46').attr('path', 7);
-    // $('#box37').attr('path', 8);
-    // $('#box28').attr('path', 9);
-    // $('#box19').attr('path', 10);
-    // $('#box10').attr('path', 11);
-    // $('#box11').attr('path', 12);
-    // $('#box12').attr('path', 13);
-    // $('#box13').attr('path', 14);
-    // $('#box14').attr('path', 15);
-    // $('#box15').attr('path', 16);
-    // $('#box16').attr('path', 17);
-    // $('#box25').attr('path', 18);
-    // $('#box34').attr('path', 19);
-    // $('#box43').attr('path', 20);
-    // $('#box52').attr('path', 21);
-    // $('#box61').attr('path', 22);
-    // $('#box70').attr('path', 23);
-    // $('#box69').attr('path', 24);
-    // $('#box68').attr('path', 25);
-    // $('#box59').attr('path', 26);
-    // $('#box50').attr('path', 27);
-    // $('#box41').attr('path', 28);
+    $('#box39').attr('path', 0);
+    $('#box48').attr('path', 1);
+    $('#box57').attr('path', 2);
+    $('#box66').attr('path', 3);
+    $('#box65').attr('path', 4);
+    $('#box64').attr('path', 5);
+    $('#box55').attr('path', 6);
+    $('#box46').attr('path', 7);
+    $('#box37').attr('path', 8);
+    $('#box28').attr('path', 9);
+    $('#box19').attr('path', 10);
+    $('#box10').attr('path', 11);
+    $('#box11').attr('path', 12);
+    $('#box12').attr('path', 13);
+    $('#box13').attr('path', 14);
+    $('#box14').attr('path', 15);
+    $('#box15').attr('path', 16);
+    $('#box16').attr('path', 17);
+    $('#box25').attr('path', 18);
+    $('#box34').attr('path', 19);
+    $('#box43').attr('path', 20);
+    $('#box52').attr('path', 21);
+    $('#box61').attr('path', 22);
+    $('#box70').attr('path', 23);
+    $('#box69').attr('path', 24);
+    $('#box68').attr('path', 25);
+    $('#box59').attr('path', 26);
+    $('#box50').attr('path', 27);
+    $('#box41').attr('path', 28);
 
+    // $('.gameSquares').attr('path')
   }
 
 generateGameBoard();
