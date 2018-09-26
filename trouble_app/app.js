@@ -81,18 +81,6 @@ $(()=>{
       alert('YELLOW WON! If you would like to play again, click the Restart Button!');
     }
   }
-  //
-  // const sendHome = (event) => {
-  //   if($(event.currentTarget).hasClass('pinkToken') === true){
-  //     $('#pinkToken').remove();
-  //     $(event.currentTarget).removeClass('pinkToken');
-  //     alert(`Womp womp. Pink has been sent back to Home.`);
-  //   } else if ($(event.currentTarget).hasClass('yellowToken') === true){
-  //     $('#yellowToken').remove();
-  //     $(event.currentTarget).removeClass('yellowToken');
-  //     alert(`Womp womp. Yellow has been sent back to Home.`);
-  //   }
-  // }
 
   // point-and-click to move tokens.- event listeners and handlers-
   // knowing who's turn it is:
@@ -106,14 +94,13 @@ $(()=>{
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const play = (event) => {
-    //if board square is not path, don't let it click
 
     const $move = $(event.currentTarget);
 
     //when turn is true, its pink's turn
     if(turn === true){
 
-      // const $moveSpace = $rollDice + $pinkToken.val();
+      
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
       // $('input').attr('checked', '');
       if ($(event.currentTarget).hasClass('yellowToken')) {
@@ -153,44 +140,44 @@ $(()=>{
       $('<div>')
         .addClass('gameSquares')
         .attr('id', 'box'+i)
-        .appendTo('.gameboard')
-        .on('click', play);
+        .appendTo('.gameboard');
+        // .on('click', play);
 
     }
     $('#box48').text('start');
     $('#box39').text('home');
     $('#box41').text('finish');
-    $('#box39').attr('path', 0);
-    $('#box48').attr('path', 1);
-    $('#box57').attr('path', 2);
-    $('#box66').attr('path', 3);
-    $('#box65').attr('path', 4);
-    $('#box64').attr('path', 5);
-    $('#box55').attr('path', 6);
-    $('#box46').attr('path', 7);
-    $('#box37').attr('path', 8);
-    $('#box28').attr('path', 9);
-    $('#box19').attr('path', 10);
-    $('#box10').attr('path', 11);
-    $('#box11').attr('path', 12);
-    $('#box12').attr('path', 13);
-    $('#box13').attr('path', 14);
-    $('#box14').attr('path', 15);
-    $('#box15').attr('path', 16);
-    $('#box16').attr('path', 17);
-    $('#box25').attr('path', 18);
-    $('#box34').attr('path', 19);
-    $('#box43').attr('path', 20);
-    $('#box52').attr('path', 21);
-    $('#box61').attr('path', 22);
-    $('#box70').attr('path', 23);
-    $('#box69').attr('path', 24);
-    $('#box68').attr('path', 25);
-    $('#box59').attr('path', 26);
-    $('#box50').attr('path', 27);
-    $('#box41').attr('path', 28);
-
-    // $('.gameSquares').attr('path')
+    $('#box39').attr('path', 0).on('click', play);
+    $('#box48').attr('path', 1).on('click', play);
+    $('#box57').attr('path', 2).on('click', play);
+    $('#box66').attr('path', 3).on('click', play);
+    $('#box65').attr('path', 4).on('click', play);
+    $('#box64').attr('path', 5).on('click', play);
+    $('#box55').attr('path', 6).on('click', play);
+    $('#box46').attr('path', 7).on('click', play);
+    $('#box37').attr('path', 8).on('click', play);
+    $('#box28').attr('path', 9).on('click', play);
+    $('#box19').attr('path', 10).on('click', play);
+    $('#box10').attr('path', 11).on('click', play);
+    $('#box11').attr('path', 12).on('click', play);
+    $('#box12').attr('path', 13).on('click', play);
+    $('#box13').attr('path', 14).on('click', play);
+    $('#box14').attr('path', 15).on('click', play);
+    $('#box15').attr('path', 16).on('click', play);
+    $('#box16').attr('path', 17).on('click', play);
+    $('#box25').attr('path', 18).on('click', play);
+    $('#box34').attr('path', 19).on('click', play);
+    $('#box43').attr('path', 20).on('click', play);
+    $('#box52').attr('path', 21).on('click', play);
+    $('#box61').attr('path', 22).on('click', play);
+    $('#box70').attr('path', 23).on('click', play);
+    $('#box69').attr('path', 24).on('click', play);
+    $('#box68').attr('path', 25).on('click', play);
+    $('#box59').attr('path', 26).on('click', play);
+    $('#box50').attr('path', 27).on('click', play);
+    $('#box41').attr('path', 28).on('click', play);
+    // .on('click', play);
+    // $('.gameSquares').css('pointer-events', 'none').on('click', play);
   }
 
 generateGameBoard();
