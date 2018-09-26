@@ -49,10 +49,11 @@ $(()=>{
   const $restartBtn = $('#restart');
 
   const $restartGame = () => {
+    $('#pinkToken').remove();
+    $('#yellowToken').remove();
     $('.gameSquares').removeClass('yellowToken');
     $('.gameSquares').removeClass('pinkToken');
-    $('.gameSquares').empty();
-    $('.gameSquares').empty();
+
   }
   $restartBtn.on('click', $restartGame);
 
@@ -70,29 +71,23 @@ $(()=>{
 
   const checkWin = ()=>{
     if($('#box41').hasClass('pinkToken') === true){
-      console.log('Pink won!');
+      alert('PINK WON!! If you would like to play again, click the Restart Button!');
     } else if ($('#box41').hasClass('yellowToken') === true){
-      console.log('Yellow won!');
+      alert('YELLOW WON! If you would like to play again, click the Restart Button!');
     }
   }
-  // $('#box41').on('click', checkPinkWin);
-
-
-
-
-
-  // re-label path-done
-  // set gamepath as an array of box#
-  // set value of each token as 0
-  // each time you roll the dice, you take the dice value and add it to the current value of the token to equal the game path place
-  // move the token to the value of the box on Path
-  // add conditional if values are the same, to move the previous token to zero.
-  // if value > final box #, turn is lost.
-
-  // if current target is pink, then set yellow back to zero and vice versa
-
-
-
+  //
+  // const sendHome = (event) => {
+  //   if($(event.currentTarget).hasClass('pinkToken') === true){
+  //     $('#pinkToken').remove();
+  //     $(event.currentTarget).removeClass('pinkToken');
+  //     alert(`Womp womp. Pink has been sent back to Home.`);
+  //   } else if ($(event.currentTarget).hasClass('yellowToken') === true){
+  //     $('#yellowToken').remove();
+  //     $(event.currentTarget).removeClass('yellowToken');
+  //     alert(`Womp womp. Yellow has been sent back to Home.`);
+  //   }
+  // }
 
   // point-and-click to move tokens.- event listeners and handlers-
   // knowing who's turn it is:
@@ -113,20 +108,33 @@ $(()=>{
     if(turn === true){
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
       // $('input').attr('checked', '');
+      if ($(event.currentTarget).hasClass('yellowToken')) {
+        $('#yellowToken').remove();
+        $(event.currentTarget).removeClass('yellowToken');
+        alert(`Womp womp. Yellow has been sent back to Home.`);
+      }
       $move.append($pinkToken);
       $move.addClass('pinkToken');
-      // $('#box41').on('click', checkPinkWin);
       checkWin();
-
+      // console.log(`Pink token's turn`);
+      // console.log(event.currentTarget);
+      // sendHome(event);
       turn = false;
 
     } else if(turn === false) {//when turn = false, its yellow's turn
       // when a gameboard div is clicked, a yellow token will be appended to it
       // $('input').attr('unchecked', '');
+      if ($(event.currentTarget).hasClass('pinkToken')) {
+        $('#pinkToken').remove();
+        $(event.currentTarget).removeClass('pinkToken');
+        alert(`Womp womp. Pink has been sent back to Home.`);
+      }
       $move.append($yellowToken);
       $move.addClass('yellowToken');
       checkWin();
-
+      // sendHome(event);
+      // console.log(`Yellow token's turn`);
+      // console.log(event.currentTarget);
       turn = true;
     }
   }
@@ -142,10 +150,10 @@ $(()=>{
         .appendTo('.gameboard')
         .on('click', play);
     }
-    $('#box48').text('start').attr('class','texttile');
-    $('#box39').text('home').attr('class', 'texttile');
-    $('#box41').text('finish').attr('class', 'texttile');
-    // gamePath.push($('#box39').attr('path', 0));
+    $('#box48').text('start');
+    $('#box39').text('home');
+    $('#box41').text('finish');
+    // $('#box39').attr('path', 0);
     // $('#box48').attr('path', 1);
     // $('#box57').attr('path', 2);
     // $('#box66').attr('path', 3);
@@ -174,10 +182,18 @@ $(()=>{
     // $('#box59').attr('path', 26);
     // $('#box50').attr('path', 27);
     // $('#box41').attr('path', 28);
-    // gamePath.push()
 
   }
 
 generateGameBoard();
 // console.log(gamePath);
 });
+// re-label path-done
+// set gamepath as an array of box#
+// set value of each token as 0
+// each time you roll the dice, you take the dice value and add it to the current value of the token to equal the game path place
+// move the token to the value of the box on Path
+// add conditional if values are the same, to move the previous token to zero.
+// if value > final box #, turn is lost.
+
+// if current target is pink, then set yellow back to zero and vice versa
