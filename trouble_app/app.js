@@ -31,119 +31,14 @@
 
 $(()=>{
 
-  // GAME RULES MODAL
-  const $openBtn = $('#openModal');
-  const $modal = $('#modal');
-  const $closeBtn = $('#close');
-  const openModal = () => {
-    $modal.css('display', 'block');
-  }
-  const closeModal = () => {
-    $modal.css('display', 'none');
-  }
-  $openBtn.on('click', openModal);
-  $closeBtn.on('click', closeModal);
-
-
-  // RESTART
-  const $restartBtn = $('#restart');
-
-  const $restartGame = () => {
-    $('#pinkToken').remove();
-    $('#yellowToken').remove();
-    $('.gameSquares').removeClass('yellowToken');
-    $('.gameSquares').removeClass('pinkToken');
-
-  }
-  $restartBtn.on('click', $restartGame);
-
-
-
-  // DICE ROLL
-
-  const $rollDice = () => {
-    const $spaces = $('#diceRoll').text(`Move: ${Math.floor(Math.random() * 6) +1}`);
-
-  }
-  const $clickRoll = $('#dice').on('click', $rollDice);
-
-  //take value of rollDice + $pinkToken.val()
-
-
-
-
-  // WIN
-
-  const checkWin = ()=>{
-    if($('#box41').hasClass('pinkToken') === true){
-      alert('PINK WON!! If you would like to play again, click the Restart Button!');
-    } else if ($('#box41').hasClass('yellowToken') === true){
-      alert('YELLOW WON! If you would like to play again, click the Restart Button!');
-    }
-  }
-
-  // point-and-click to move tokens.- event listeners and handlers-
-  // knowing who's turn it is:
-  //toggle bar
-  //toggles when a square is clicked
-
-
-  let turn = true;
-  const $pinkToken = $('<div id="pinkToken"></div>');
-  const $yellowToken = $('<div id="yellowToken"></div>');
-
-  //when user clicks on a square, alternate between displaying pink and yellow
-  const play = (event) => {
-
-    const $move = $(event.currentTarget);
-
-    //when turn is true, its pink's turn
-    if(turn === true){
-
-      
-      // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
-      // $('input').attr('checked', '');
-      if ($(event.currentTarget).hasClass('yellowToken')) {
-        $('#yellowToken').remove();
-        $('.gameSquares').removeClass('yellowToken');
-        $('.gameSquares').removeClass('pinkToken');
-        alert(`Womp womp. Yellow has been sent back to Home.`);
-      }
-      $('.gameSquares').removeClass('pinkToken');
-      $move.append($pinkToken);
-      $move.addClass('pinkToken');
-      checkWin();
-      turn = false;
-
-    } else if(turn === false) {//when turn = false, its yellow's turn
-      // when a gameboard div is clicked, a yellow token will be appended to it
-      // $('input').attr('unchecked', '');
-      if ($(event.currentTarget).hasClass('pinkToken')) {
-        $('#pinkToken').remove();
-        $('.gameSquares').removeClass('pinkToken');
-        $('.gameSquares').removeClass('yellowToken');
-        alert(`Womp womp. Pink has been sent back to Home.`);
-      }
-      $('.gameSquares').removeClass('yellowToken');
-      $move.append($yellowToken);
-      $move.addClass('yellowToken');
-      checkWin();
-      turn = true;
-    }
-  }
-
-
-// const gamePath = [];
-
+  // MAKE THE GAMEBOARD A GRID
   const generateGameBoard = () => {
     for(let i=0; i<81; i++){
       $('<div>')
         .addClass('gameSquares')
         .attr('id', 'box'+i)
         .appendTo('.gameboard');
-        // .on('click', play);
-
-    }
+    }//LABEL THE PATH FOR TOKENS TO FOLLOW. ONLY ALLOW CLICKING ON PATH
     $('#box48').text('start');
     $('#box39').text('home');
     $('#box41').text('finish');
@@ -176,9 +71,142 @@ $(()=>{
     $('#box59').attr('path', 26).on('click', play);
     $('#box50').attr('path', 27).on('click', play);
     $('#box41').attr('path', 28).on('click', play);
-    // .on('click', play);
-    // $('.gameSquares').css('pointer-events', 'none').on('click', play);
+
+    // console.log($pinkToken);
+    // console.log($yellowToken);
   }
+
+
+
+  // GAME RULES MODAL
+  const $openBtn = $('#openModal');
+  const $modal = $('#modal');
+  const $closeBtn = $('#close');
+  const openModal = () => {
+    $modal.css('display', 'block');
+  }
+  const closeModal = () => {
+    $modal.css('display', 'none');
+  }
+  $openBtn.on('click', openModal);
+  $closeBtn.on('click', closeModal);
+
+
+  // RESTART
+  const $restartBtn = $('#restart');
+
+  const $restartGame = () => {
+    $('#pinkToken').remove();
+    $('#yellowToken').remove();
+    $('.gameSquares').removeClass('yellowToken');
+    $('.gameSquares').removeClass('pinkToken');
+
+  }
+  $restartBtn.on('click', $restartGame);
+
+
+
+  // DICE ROLL
+
+  const rollDice = () => {
+    const spaces = $('#diceRoll').text(Math.floor(Math.random() * 6) +1);
+    const diceRoll = $('#diceRoll').val();//result of dice roll
+    // console.log(diceRoll);
+    const currentPinkPathValue = $('#pinkToken').parent().attr('path');
+    // console.log(currentPinkPathValue);
+    const newPathValue = parseInt(diceRoll) + parseInt(currentPinkPathValue);
+    return newPathValue;
+
+    // const playGame = $('#diceRoll').on('click', play);
+  }
+
+  let $clickRoll = $('#dice').on('click', rollDice);
+
+
+
+
+
+
+
+  // WIN
+
+  const checkWin = ()=>{
+    if($('#box41').hasClass('pinkToken') === true){
+      alert('PINK WON!! If you would like to play again, click the Restart Button!');
+    } else if ($('#box41').hasClass('yellowToken') === true){
+      alert('YELLOW WON! If you would like to play again, click the Restart Button!');
+    }
+  }
+
+  // point-and-click to move tokens.-
+
+  let turn = true;
+  // const $pinkToken = $('#pinkToken');
+  // const $yellowToken = $('#yellowToken');
+  const $pinkToken = $('<div id="pinkToken"></div>');
+  const $yellowToken = $('<div id="yellowToken"></div>');
+
+  //when user clicks on a square, alternate between displaying pink and yellow
+  const play = (event) => {
+
+    // console.log($('#diceRoll').val());
+
+
+    const $move = $(event.currentTarget);
+
+    //when turn is true, its pink's turn
+    if(turn === true){
+
+      //you can only move the amount that you roll.
+
+      if ($(event.currentTarget).hasClass('yellowToken')) {
+        $('#yellowToken').remove();
+        $('.gameSquares').removeClass('yellowToken');
+        $('.gameSquares').removeClass('pinkToken');
+        alert(`Womp womp. Yellow has been sent back to Home.`);
+      }
+      // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
+      $('.gameSquares').removeClass('pinkToken');
+      $move.append($pinkToken);//.attr('path', newPathValue)
+      $move.addClass('pinkToken');
+      checkWin();
+      // turn = false;
+      toggle(turn);
+      // $('input').attr('checked', '');
+
+    } else if(turn === false) {//when turn = false, its yellow's turn
+      // $('input').attr('unchecked', '');
+
+        if ($(event.currentTarget).hasClass('pinkToken')) {
+          $('#pinkToken').remove();
+          $('.gameSquares').removeClass('pinkToken');
+          $('.gameSquares').removeClass('yellowToken');
+          alert(`Womp womp. Pink has been sent back to Home.`);
+        }
+      // when a gameboard div is clicked, a yellow token will be appended to it
+      $('div').removeClass('yellowToken');
+      $move.append($yellowToken);
+      $move.addClass('yellowToken');
+      checkWin();
+      // turn = true;
+      toggle(turn);
+
+    }
+  }
+
+
+// const gamePath = [];
+
+const toggle = (turn) => {
+  if(turn === false){
+    $('input').attr('unchecked', '');
+    turn = true;
+  } else if (turn === true) {
+    $('input').attr('checked', '');
+    turn = false;
+  }
+
+}
 
 generateGameBoard();
 // console.log(gamePath);

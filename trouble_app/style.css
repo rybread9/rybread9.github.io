@@ -123,6 +123,8 @@ button {
   margin: 0 auto;
   vertical-align: middle;
   line-height: -13px;
+  display: inline;
+  z-index: 1;
 }
 
 #box48 {
@@ -152,7 +154,7 @@ button {
   background-color: rgb(255, 0, 214);
   border-radius: 50%;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
 }
 #yellowToken {
   height: 40px;
@@ -163,7 +165,7 @@ button {
   background-color: rgb(235, 255, 0);
   border-radius: 50%;
   justify-content: center;
-  z-index: 1;
+  z-index: 2;
 }
 /* ---Toggle Bar by https://www.w3schools.com/howto/howto_css_switch.asp--- */
 .toggle {
