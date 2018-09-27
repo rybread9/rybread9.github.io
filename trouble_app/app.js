@@ -169,9 +169,11 @@ $(()=>{
       $('.gameSquares').removeClass('pinkToken');
       $move.append($pinkToken);//.attr('path', newPathValue)
       $move.addClass('pinkToken');
+
       checkWin();
-      // turn = false;
+      turn = false;
       toggle(turn);
+
       // $('input').attr('checked', '');
 
     } else if(turn === false) {//when turn = false, its yellow's turn
@@ -188,7 +190,7 @@ $(()=>{
       $move.append($yellowToken);
       $move.addClass('yellowToken');
       checkWin();
-      // turn = true;
+      turn = true;
       toggle(turn);
 
     }
@@ -199,11 +201,17 @@ $(()=>{
 
 const toggle = (turn) => {
   if(turn === false){
-    $('input').attr('unchecked', '');
+    $('#check').attr('unchecked', '');//yellow
     turn = true;
+    $('#check').removeAttr('unchecked');
+    $('#check').attr('checked');
+    $('input:unchecked').css('background-color', 'rgb(255, 0, 214)');//pink
   } else if (turn === true) {
-    $('input').attr('checked', '');
+    $('#check').attr('checked', '');//pink
     turn = false;
+    $('#check').removeAttr('checked');
+    $('#check').attr('unchecked');
+    $('input:checked').css('background-color', 'rgb(235, 255, 0)');//yellow
   }
 
 }
