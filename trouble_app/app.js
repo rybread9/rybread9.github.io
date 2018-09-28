@@ -111,7 +111,7 @@ $(()=>{
 
       //if you land on an opponent's token, opponent gets sent home
       if ($(event.currentTarget).hasClass('yellowToken')) {
-        $('#yellowToken').remove();
+        $('#yellowToken').appendTo('#box39');
         $('.gameSquares').removeClass('yellowToken');
         $('.gameSquares').removeClass('pinkToken');
         alert(`Womp womp. Yellow has been sent back to Home.`);
@@ -135,14 +135,14 @@ $(()=>{
 
       //if you land on an opponent's token, opponent gets sent home
       if ($(event.currentTarget).hasClass('pinkToken')) {
-        $('#pinkToken').remove();
+        $('#pinkToken').appendTo('#box39');
         $('.gameSquares').removeClass('pinkToken');
         $('.gameSquares').removeClass('yellowToken');
         alert(`Womp womp. Pink has been sent back to Home.`);
       }
       // when a gameboard div is clicked, a yellow token will be appended to it
 
-      
+
 
       $('div').removeClass('yellowToken');
       $move.append($yellowToken);
