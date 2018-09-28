@@ -19,11 +19,10 @@ Per Trouble game rules, to win the game, you must be the first player to move yo
 
 ### Technologies Used
 This app was created using:
-
--HTML
--CSS
--JavaScript
--jQuery
+* HTML
+* CSS
+* JavaScript
+* jQuery
 
 
 ### Challenges Overcome
