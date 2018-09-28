@@ -42,7 +42,7 @@ button {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	z-index: 1;
+	z-index: 2;
 	overflow: scroll;
 	display: none;
 }
@@ -71,14 +71,14 @@ button {
   padding: 20px;
 }
 .dice {
-  margin-top: 30px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: center;
 }
 #diceRoll {
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
   min-width: 50%;
   height: auto;
