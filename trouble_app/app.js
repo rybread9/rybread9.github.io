@@ -62,7 +62,7 @@ $(()=>{
 
   let $clickRoll = $('#dice').on('click', rollDice);
 
-// ---MOVING A TOKEN ACCORDING TO DICE ROLL---
+// ---MOVING A TOKEN ACCORDING TO DICE ROLL---INCOMPLETE
 
   const findNewPinkPathValue = () => {
     const diceRoll = $('#diceRoll').val();//result of dice roll
@@ -118,7 +118,7 @@ $(()=>{
       }
       // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
 
-    findNewPinkPathValue();
+
 
     $('.gameSquares').removeClass('pinkToken');
     $move.append($pinkToken);//.attr('path', newPathValue)
@@ -142,7 +142,7 @@ $(()=>{
       }
       // when a gameboard div is clicked, a yellow token will be appended to it
 
-      findNewYellowPathValue();
+      
 
       $('div').removeClass('yellowToken');
       $move.append($yellowToken);
