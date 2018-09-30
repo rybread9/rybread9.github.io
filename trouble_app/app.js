@@ -52,30 +52,68 @@ $(()=>{
 
   // ---DICE ROLL---
 
-  const rollDice = () => {
-    const resultOfRoll = $('#diceRoll').text(Math.floor(Math.random() * 6) +1);
+  let newPathValue;
 
-    const movePieceTo = path[newPathValue].append('<div class="halo"></div>');
+  let turn = true;
+
+  const $pinkToken = $('<div id="pinkToken"></div>');
+
+  const $yellowToken = $('<div id="yellowToken"></div>');
+
+  const $halo = $('<div id="halo"></div>');
+
+
+  const rollDice = () => {
+    //roll the dice
+    $('#diceRoll').text(Math.floor(Math.random() * 6) +1);
+    //dice roll results:
+    let diceRoll = $('#diceRoll').val();
+    //move the halo into the position the player's token is supposed to move
+    if (turn === true) {
+      let currentPinkPathValue = $('#pinkToken').parent().attr('path');
+      let newPathValue = parseInt(diceRoll) + parseInt(currentPinkPathValue);
+      const movePieceTo = path[newPathValue].append($halo);
+      $halo.css('border', '1px solid rgb(0, 217, 255)');
+    } else if (turn === false) {
+      let currentYellowPathValue = $('#yellowToken').parent().attr('path');
+      let newPathValue = parseInt(diceRoll) + parseInt(currentYellowPathValue);
+      const movePieceTo = path[newPathValue].append($halo);
+      $halo.css('border', '1px solid rgb(0, 217, 255)');
+    }
+
   }
 
   $('#dice').on('click', rollDice);
 
 // ---MOVING A TOKEN ACCORDING TO DICE ROLL---INCOMPLETE
-  let newPathValue;
-  const $pinkToken = $('<div id="pinkToken"></div>');
-  const $yellowToken = $('<div id="yellowToken"></div>');
+
   const findNewPathValue = () => {
+
     let diceRoll = $('#diceRoll').val();//result of dice roll
     if(turn === true) {
+
+      let currentPinkPathValue = $('#pinkToken').parent().attr('path');   //current location of pink token
+      let newPathValue = parseInt(diceRoll) + parseInt(currentPinkPathValue);   //new location for token
+      $('.gameSquares').removeClass('pinkToken');    //empty board of class .pinkToken
+      path[newPathValue].empty();
+      const movePieceTo = path[newPathValue].append($pinkToken);    // move token to it's new div by accessing path array
       sendHome();
-      let currentPinkPathValue = $('#pinkToken').parent().attr('path');//current location of pink token
-      let newPathValue = parseInt(diceRoll) + parseInt(currentPinkPathValue);//new location for token
-      const movePieceTo = path[newPathValue].append($pinkToken);// move token to it's new div by accessing path array
+      $pinkToken.parent().addClass('pinkToken');    //this helps with the sendHome function
+      checkWin();
+      turn = false;
+      toggle(turn);
     } else if (turn === false) {
+
+      let currentYellowPathValue = $('#yellowToken').parent().attr('path');   //get current location of token
+      let newPathValue = parseInt(diceRoll) + parseInt(currentYellowPathValue);   //add them together to get new location for token
+      $('.gameSquares').removeClass('yellowToken');
+      path[newPathValue].empty();     //empty board of class .yellowToken
+      const movePieceTo = path[newPathValue].append($yellowToken);    // move token to it's new div by accessing path array
       sendHome();
-      let currentYellowPathValue = $('#yellowToken').parent().attr('path');//get current location of token
-      let newPathValue = parseInt(diceRoll) + parseInt(currentYellowPathValue);//add them together to get new location for token
-      const movePieceTo = path[newPathValue].append($pinkToken);// move token to it's new div by accessing path array
+      $yellowToken.parent().addClass('yellowToken');    //this helps with the sendHome function
+      checkWin();
+      turn = true;
+      toggle(turn);
     }
   }
 
@@ -93,53 +131,27 @@ $(()=>{
   }
 
 
-// ---MOVING TOKENS---
-
-  let turn = true;
-
-
+// ---SENDING TOKENS HOME---
 
   //when user clicks on a square, alternate between displaying pink and yellow
   const sendHome = () => {
-    //when turn is true, its pink's turn
+
     if(turn === true){
       //if you land on an opponent's token, opponent gets sent home
-      if ($('.gameSquare').hasClass('yellowToken')) {
-        $('#yellowToken').appendTo('#box39');
+      if ($('.gameSquares').hasClass('yellowToken')) {
         $('.gameSquares').removeClass('yellowToken');
         $('.gameSquares').removeClass('pinkToken');
+        $('#yellowToken').appendTo('#box39'); //home
         alert(`Womp womp. Yellow has been sent back to Home.`);
       }
-    // when a gameboard div is clicked, a pink token with a class of .pinkToken will be appended to it
-    $('.gameSquares').removeClass('pinkToken');
-    $move.append($pinkToken);//.attr('path', newPathValue)
-    $move.addClass('pinkToken');
-
-    checkWin();
-    turn = false;
-
-    toggle(turn);
-
-
     } else if(turn === false) {//when turn = false, its yellow's turn
-
       //if you land on an opponent's token, opponent gets sent home
-      if ($(event.currentTarget).hasClass('pinkToken')) {
-        $('#pinkToken').appendTo('#box39');
+      if ($('.gameSquares').hasClass('pinkToken')) {
         $('.gameSquares').removeClass('pinkToken');
         $('.gameSquares').removeClass('yellowToken');
+        $('#pinkToken').appendTo('#box39'); //home
         alert(`Womp womp. Pink has been sent back to Home.`);
       }
-    // when a gameboard div is clicked, a yellow token will be appended to it
-    // console.log(findNewYellowPathValue());
-    $('div').removeClass('yellowToken');
-    $move.append($yellowToken);
-    $move.addClass('yellowToken');
-    checkWin();
-    turn = true;
-
-    toggle(turn);
-
     }
   }
 
@@ -147,16 +159,14 @@ $(()=>{
 // const gamePath = [];
 
 const toggle = (turn) => {
-  if(turn === false){//yellow token turn is false
+  if(turn === false){//yellow- token turn is false, toggle is yellow
     $('#check').attr('unchecked', '');//yellow
-    // turn = true;
     $('#diceRoll').empty();
     $('#check').removeAttr('unchecked', '');
     $('#check').attr('checked', '');
     // $('input:unchecked').css('background-color', 'rgb(255, 0, 214)');//pink
-  } else if (turn === true) {//pink token turn is true
+  } else if (turn === true) {//pink- token turn is true, toggle is pink
     $('#check').attr('checked', '');//pink
-    // turn = false;
     $('#diceRoll').empty();
     $('#check').removeAttr('checked', '');
     $('#check').attr('unchecked', '');
@@ -165,7 +175,7 @@ const toggle = (turn) => {
 }
 
 let path = [];
-
+// For visual reference of key-value properties of objects in an array:
 // let path = [
 //   {
 //     id: #box39,
@@ -180,12 +190,13 @@ const generateGameBoard = () => {
       .addClass('gameSquares')
       .attr('id', 'box'+i)
       .appendTo('.gameboard');
-  }//LABEL THE PATH FOR TOKENS TO FOLLOW. ONLY ALLOW CLICKING ON PATH
+  }//LABEL THE PATH FOR TOKENS TO FOLLOW.
   $('#box48').text('start');
   $('#box39').text('home');
   $('#box41').text('finish');
   $pinkToken.appendTo('#box39');
   $yellowToken.appendTo('#box39');
+  $halo.appendTo('#box39');
   path.push($('#box39').attr('path', 0));
   path.push($('#box48').attr('path', 1));
   path.push($('#box57').attr('path', 2));
@@ -217,7 +228,6 @@ const generateGameBoard = () => {
   path.push($('#box41').attr('path', 28));
 }
 generateGameBoard();
-console.log(path[2]);
 
 });
 // --FOR FUTURE UPDATES--
