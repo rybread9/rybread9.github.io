@@ -152,7 +152,7 @@ $(()=>{
     if (turn === true){
       //if you land on an opponent's token, opponent gets sent home
       if ($($pinkToken).parent().hasClass('yellowToken')) {
-        debugger;
+        
         $('.gameSquares').removeClass('yellowToken');
         $('.gameSquares').removeClass('pinkToken');
         $('#yellowToken').remove();
@@ -161,7 +161,7 @@ $(()=>{
         $pinkToken.parent().addClass('pinkToken');
       }
     } else if (turn === false) {
-      debugger;
+
       //if you land on an opponent's token, opponent gets sent home
       if ($($yellowToken).parent().hasClass('pinkToken')) {
         $('.gameSquares').removeClass('pinkToken');
