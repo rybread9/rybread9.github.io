@@ -123,6 +123,8 @@ $(()=>{
       const movePieceTo = path[newPathValue].append($yellowToken);
       // check to see if there is already a token on newPathValue
       sendHome();
+      // add a class of .pinkToken to div
+      $yellowToken.parent().addClass('yellowToken');
       //check to see if the token has landed on the finish div
       checkWin();
       //change turn
@@ -152,7 +154,6 @@ $(()=>{
     if (turn === true){
       //if you land on an opponent's token, opponent gets sent home
       if ($($pinkToken).parent().hasClass('yellowToken')) {
-        
         $('.gameSquares').removeClass('yellowToken');
         $('.gameSquares').removeClass('pinkToken');
         $('#yellowToken').remove();
@@ -161,7 +162,6 @@ $(()=>{
         $pinkToken.parent().addClass('pinkToken');
       }
     } else if (turn === false) {
-
       //if you land on an opponent's token, opponent gets sent home
       if ($($yellowToken).parent().hasClass('pinkToken')) {
         $('.gameSquares').removeClass('pinkToken');
