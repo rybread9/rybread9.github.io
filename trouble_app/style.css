@@ -168,7 +168,17 @@ button {
   justify-content: center;
   z-index: 2;
 }
-/* ---Toggle Bar by https://www.w3schools.com/howto/howto_css_switch.asp--- */
+.halo {
+  height: 40px;
+  width: 40px;
+  margin: 0 auto;
+  margin-top: 12px;
+  border-radius: 50%;
+  justify-content: center;
+  z-index: 2;
+  border: 1px solid rgba(89, 4, 203, 0.3);
+}
+/* --- Toggle Bar by https://www.w3schools.com/howto/howto_css_switch.asp --- */
 .toggle {
   border: 1px solid rgb(2, 203, 10);
   height: 90%;
