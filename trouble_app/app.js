@@ -74,11 +74,19 @@ $(()=>{
       let newPathValue = parseInt(diceRoll) + parseInt(currentPinkPathValue);
       const movePieceTo = path[newPathValue].append($halo);
       $halo.css('border', '1px solid rgb(0, 217, 255)');
+      // if(path[newPathValue] > path.length){
+      //   alert('You must roll the exact number of moves to move your token into the Finish.');
+      //   turn = false;
+      // }
     } else if (turn === false) {
       let currentYellowPathValue = $('#yellowToken').parent().attr('path');
       let newPathValue = parseInt(diceRoll) + parseInt(currentYellowPathValue);
       const movePieceTo = path[newPathValue].append($halo);
       $halo.css('border', '1px solid rgb(0, 217, 255)');
+      // if(path[newPathValue] > path.length){
+      //   alert('You must roll the exact number of moves to move your token into the Finish.');
+      //   turn = true;
+      // }
     }
 
   }
