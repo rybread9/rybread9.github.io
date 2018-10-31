@@ -38,28 +38,35 @@ $(()=>{
 
 
   // ---RESTART---
+  // restart button
   const $restartBtn = $('#restart');
 
   const $restartGame = () => {
-    $('#pinkToken').remove();//remove the tokens
+    //remove the tokens
+    $('#pinkToken').remove();
     $('#yellowToken').remove();
-    $('.gameSquares').removeClass('yellowToken');//remove the classes from whole board
+    //remove the classes from whole board
+    $('.gameSquares').removeClass('yellowToken');
     $('.gameSquares').removeClass('pinkToken');
+    //append the tokens to the home div
+    $($pinkToken).appendTo('#box39');
+    $($yellowToken).appendTo('#box39');
   }
+  // when restart button is clicked, run $restartGame
   $restartBtn.on('click', $restartGame);
 
 
 
   // ---DICE ROLL---
-
+  // the token's new destination determined by rollDice
   let newPathValue;
-
+  // WHEN TURN IS TRUE, IT IS PINK'S TURN. WHEN TURN IS FALSE, IT IS YELLOW'S TURN
   let turn = true;
-
+  // pink token is a div that will be appended to path values
   const $pinkToken = $('<div id="pinkToken"></div>');
-
+  // yellow token is a div that will be appended to path values
   const $yellowToken = $('<div id="yellowToken"></div>');
-
+  // halo is a div that shows the player's next move according to the dice roll.
   const $halo = $('<div id="halo"></div>');
 
 
@@ -95,7 +102,7 @@ $(()=>{
 
 // ---MOVING A TOKEN ACCORDING TO DICE ROLL---INCOMPLETE
 
-  const findNewPathValue = () => {
+  const moveToNewPosition = () => {
     //remove halo from new path div
     $halo.remove();
 
@@ -109,7 +116,11 @@ $(()=>{
       //empty board of class .pinkToken
       $('.gameSquares').removeClass('pinkToken');
       // move token to it's new div by accessing path array
-      const movePieceTo = path[newPathValue].append($pinkToken);
+      if(path[newPathValue]){
+        path[newPathValue].append($pinkToken);
+      } else {
+        $('#box41').append($pinkToken);
+      }
       // check to see if there is already a token on newPathValue
       sendHome();
       // add a class of .pinkToken to div
@@ -128,7 +139,11 @@ $(()=>{
       let newPathValue = parseInt(diceRoll) + parseInt(currentYellowPathValue);
       $('.gameSquares').removeClass('yellowToken');
       // move token to it's new div by accessing path array
-      const movePieceTo = path[newPathValue].append($yellowToken);
+      if(path[newPathValue]){
+        path[newPathValue].append($yellowToken);
+      } else {
+        $('#box41').append($yellowToken);
+      }
       // check to see if there is already a token on newPathValue
       sendHome();
       // add a class of .pinkToken to div
@@ -142,7 +157,7 @@ $(()=>{
     }
   }
 
-  $('#move').on('click', findNewPathValue);
+  $('#move').on('click', moveToNewPosition);
 
 
   // ---WIN---
